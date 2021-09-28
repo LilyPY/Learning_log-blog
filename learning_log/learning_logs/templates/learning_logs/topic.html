@@ -1,0 +1,18 @@
+{% extends  "learning_logs/base.html" %} <!-- Шаблон расширяет base .html, -->
+
+{% block content %}
+
+<p>Topic: {{ topic }}</p> <!-- выводится текущая тема из шаблонной переменной {{ topic }}. -->
+<p>Entries:</p>
+<ul> <!-- оздается маркированный список со всеми записями по теме -->
+    {% for entry in entries %} <!-- перебор записей осуществляется -->
+        <li>
+            <p>{{ entry.date_added|date:"M d, Y H: i" }}</p> <!-- Для временной метки выводится значение атрибута date_added. -->
+            <p>{{ entry.text|linebreaks }}</p> <!-- выводит полное значение -->
+        </li>
+    {% empty %}
+        <li>There are no entries for this topic yet.</li>
+    {% endfor %}
+</ul>
+
+{% endblock content %} 
